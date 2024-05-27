@@ -1,12 +1,12 @@
+use aw_models::Event;
+use chrono::{Duration, Utc};
 use clap::crate_version;
 use clap::Parser;
-use screenshots::{display_info::DisplayInfo, Screen};
 use image::DynamicImage;
+use screenshots::{display_info::DisplayInfo, Screen};
+use serde_json::{Map, Value};
 use std::error::Error;
 use std::io::Cursor;
-use chrono::{Duration, Utc};
-use serde_json::{Map, Value};
-use aw_models::Event;
 
 #[derive(Parser)]
 #[clap(version = crate_version!(), author = "Nishant Bhakar")]
@@ -45,12 +45,17 @@ fn get_screenshots() -> Result<Vec<(DynamicImage, String, usize)>, Box<dyn Error
 
 fn save_screenshots(screenshots: Vec<(DynamicImage, String, usize)>) -> Result<(), Box<dyn Error>> {
     for (dynamic_image, time, idx) in screenshots {
-        dynamic_image.save_with_format(format!("target/screenshots/{}_{}.webp", time, idx), image::ImageFormat::WebP)?;
+        dynamic_image.save_with_format(
+            format!("target/screenshots/{}_{}.webp", time, idx),
+            image::ImageFormat::WebP,
+        )?;
     }
     Ok(())
 }
 
-fn screenshots_to_events(screenshots: Vec<(DynamicImage, String, usize)>) -> Result<Vec<Event>, Box<dyn Error>> {
+fn screenshots_to_events(
+    screenshots: Vec<(DynamicImage, String, usize)>,
+) -> Result<Vec<Event>, Box<dyn Error>> {
     let mut events = Vec::new();
     for (dynamic_image, _, idx) in screenshots {
         let mut data = Map::new();
@@ -78,13 +83,14 @@ async fn send_events_to_server(
     events: Vec<Event>,
     server: &str,
     port: u16,
-    bucket_id: &str) -> Result<(), Box<dyn Error>> {
-    let url = format!("http://{}:{}/api/0/buckets/{}/events", server, port, bucket_id);
+    bucket_id: &str,
+) -> Result<(), Box<dyn Error>> {
+    let url = format!(
+        "http://{}:{}/api/0/buckets/{}/events",
+        server, port, bucket_id
+    );
     let client = reqwest::Client::new();
-    let res = client.post(&url)
-        .json(&events)
-        .send()
-        .await?;
+    let res = client.post(&url).json(&events).send().await?;
 
     println!("Response: {}", res.status());
 
@@ -105,19 +111,22 @@ async fn main() {
 
                 match screenshots_to_events(screenshots) {
                     Ok(events) => {
-                       if let Err(err) = send_events_to_server(
+                        if let Err(err) = send_events_to_server(
                             events,
                             opts.server.as_str(),
                             opts.port,
-                            "aw-watcher-screenshot_Razerator").await {
+                            "aw-watcher-screenshot_Razerator",
+                        )
+                        .await
+                        {
                             eprintln!("Failed to send events to server: {}", err);
                         } else {
                             println!("Converted screenshots to events successfully.")
                         }
-                    },
+                    }
                     Err(e) => eprintln!("Failed to convert screenshots to events: {}", e),
                 }
-            },
+            }
             Err(e) => eprintln!("Failed to get screenshots: {}", e),
         }
         tokio::time::sleep(tokio::time::Duration::from_secs(opts.time_interval as u64)).await;

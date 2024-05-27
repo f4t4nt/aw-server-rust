@@ -181,18 +181,21 @@ mod tests {
             timestamp: DateTime::from_str("2000-01-01T00:00:00Z").unwrap(),
             duration: Duration::seconds(1),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
         let e2 = Event {
             id: None,
             timestamp: DateTime::from_str("2000-01-01T00:00:03Z").unwrap(),
             duration: Duration::seconds(1),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
         let e_expected = Event {
             id: None,
             timestamp: DateTime::from_str("2000-01-01T00:00:00Z").unwrap(),
             duration: Duration::seconds(4),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
         let res = flood(vec![e1, e2], Duration::seconds(5));
         assert_eq!(1, res.len());
@@ -207,24 +210,28 @@ mod tests {
             timestamp: DateTime::from_str("2000-01-01T00:00:00Z").unwrap(),
             duration: Duration::seconds(1),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
         let e2 = Event {
             id: None,
             timestamp: DateTime::from_str("2000-01-01T00:00:03Z").unwrap(),
             duration: Duration::seconds(1),
             data: json_map! {"test": json!(2)},
+            blob_data: None,
         };
         let e1_expected = Event {
             id: None,
             timestamp: DateTime::from_str("2000-01-01T00:00:00Z").unwrap(),
             duration: Duration::seconds(2),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
         let e2_expected = Event {
             id: None,
             timestamp: DateTime::from_str("2000-01-01T00:00:02Z").unwrap(),
             duration: Duration::seconds(2),
             data: json_map! {"test": json!(2)},
+            blob_data: None,
         };
         let res = flood(vec![e1, e2], Duration::seconds(5));
         assert_eq!(2, res.len());
@@ -240,18 +247,21 @@ mod tests {
             timestamp: DateTime::from_str("2000-01-01T00:00:00Z").unwrap(),
             duration: Duration::seconds(10),
             data: json_map! {"type": "a"},
+            blob_data: None,
         };
         let e2 = Event {
             id: None,
             timestamp: DateTime::from_str("2000-01-01T00:00:05Z").unwrap(),
             duration: Duration::seconds(10),
             data: json_map! {"type": "a"},
+            blob_data: None,
         };
         let e1_expected = Event {
             id: None,
             timestamp: DateTime::from_str("2000-01-01T00:00:00Z").unwrap(),
             duration: Duration::seconds(15),
             data: json_map! {"type": "a"},
+            blob_data: None,
         };
         let res = flood(vec![e1, e2], Duration::seconds(5));
         assert_eq!(1, res.len());
@@ -266,12 +276,14 @@ mod tests {
             timestamp: DateTime::from_str("2000-01-01T00:00:00Z").unwrap(),
             duration: Duration::seconds(10),
             data: json_map! {"type": "a"},
+            blob_data: None,
         };
         let e2 = Event {
             id: None,
             timestamp: DateTime::from_str("2000-01-01T00:00:01Z").unwrap(),
             duration: Duration::seconds(5),
             data: json_map! {"type": "a"},
+            blob_data: None,
         };
         let res = flood(vec![e1.clone(), e2], Duration::seconds(5));
         assert_eq!(1, res.len());
@@ -287,12 +299,14 @@ mod tests {
             timestamp: DateTime::from_str("2000-01-01T00:00:00Z").unwrap(),
             duration: Duration::seconds(10),
             data: json_map! {"type": "a"},
+            blob_data: None,
         };
         let e2 = Event {
             id: None,
             timestamp: DateTime::from_str("2000-01-01T00:00:01Z").unwrap(),
             duration: Duration::seconds(5),
             data: json_map! {"type": "b"},
+            blob_data: None,
         };
         let res = flood(vec![e1.clone(), e2.clone()], Duration::seconds(5));
         assert_eq!(2, res.len());
@@ -311,24 +325,28 @@ mod tests {
             timestamp: DateTime::from_str("2000-01-01T00:00:00Z").unwrap(),
             duration: Duration::seconds(1),
             data: json_map! {"status": "afk"},
+            blob_data: None,
         };
         let e2 = Event {
             id: None,
             timestamp: DateTime::from_str("2000-01-01T00:00:01Z").unwrap(),
             duration: Duration::seconds(5),
             data: json_map! {"status": "not-afk"},
+            blob_data: None,
         };
         let e3 = Event {
             id: None,
             timestamp: DateTime::from_str("2000-01-01T00:00:01Z").unwrap(),
             duration: Duration::seconds(1),
             data: json_map! {"status": "not-afk"},
+            blob_data: None,
         };
         let e4 = Event {
             id: None,
             timestamp: DateTime::from_str("2000-01-01T00:00:06Z").unwrap(),
             duration: Duration::seconds(1),
             data: json_map! {"status": "afk"},
+            blob_data: None,
         };
         let res = flood(
             vec![e1.clone(), e2.clone(), e3, e4.clone()],
@@ -352,30 +370,35 @@ mod tests {
             timestamp: DateTime::from_str("2000-01-01T00:00:00Z").unwrap(),
             duration: Duration::seconds(1),
             data: json_map! {"status": "afk"},
+            blob_data: None,
         };
         let e2 = Event {
             id: None,
             timestamp: DateTime::from_str("2000-01-01T00:00:01Z").unwrap(),
             duration: Duration::seconds(5),
             data: json_map! {"status": "not-afk"},
+            blob_data: None,
         };
         let e3 = Event {
             id: None,
             timestamp: DateTime::from_str("2000-01-01T00:00:01Z").unwrap(),
             duration: Duration::seconds(1),
             data: json_map! {"status": "not-afk"},
+            blob_data: None,
         };
         let e4 = Event {
             id: None,
             timestamp: DateTime::from_str("2000-01-01T00:00:01Z").unwrap(),
             duration: Duration::seconds(10),
             data: json_map! {"status": "not-afk"},
+            blob_data: None,
         };
         let e5 = Event {
             id: None,
             timestamp: DateTime::from_str("2000-01-01T00:00:11Z").unwrap(),
             duration: Duration::seconds(1),
             data: json_map! {"status": "afk"},
+            blob_data: None,
         };
         let res = flood(
             vec![e1.clone(), e2, e3, e4.clone(), e5.clone()],

@@ -94,6 +94,7 @@ mod test {
             ),
             duration: Duration::seconds(0),
             data: Map::new(),
+            blob_data: None,
         };
         println!("{event:?}");
         client.insert_event(&bucketname, &event).unwrap();

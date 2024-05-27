@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "cppvsdbg",
+            "request": "launch",
+            "name": "Debug Rust with MSVC",
+            "program": "${workspaceFolder}/target/debug/aw-server.exe",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "rust: cargo build"
+        }
+    ]
+}

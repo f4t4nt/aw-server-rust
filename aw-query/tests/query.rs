@@ -69,6 +69,7 @@ mod query_tests {
             timestamp: chrono::Utc::now(),
             duration: Duration::seconds(0),
             data: json_map! {"key": json!("value")},
+            blob_data: None,
         };
         let mut e2 = e1.clone();
         e2.timestamp = chrono::Utc::now();

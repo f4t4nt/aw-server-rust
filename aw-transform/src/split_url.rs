@@ -83,6 +83,7 @@ mod tests {
             timestamp: DateTime::from_str("2000-01-01T00:00:01Z").unwrap(),
             duration: Duration::seconds(1),
             data: json_map! {"url": "http://www.google.com/path?query=1"},
+            blob_data: None,
         };
         split_url_event(&mut e1);
         assert_eq!(

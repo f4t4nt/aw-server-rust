@@ -684,6 +684,7 @@ impl DatastoreInstance {
                 timestamp: DateTime::from_timestamp(time_seconds, time_subnanos).unwrap(),
                 duration: Duration::nanoseconds(duration_ns),
                 data,
+                blob_data: None,
             })
         }) {
             Ok(rows) => rows,
@@ -776,6 +777,7 @@ impl DatastoreInstance {
                     timestamp: DateTime::from_timestamp(time_seconds, time_subnanos).unwrap(),
                     duration: Duration::nanoseconds(duration_ns),
                     data,
+                    blob_data: None,
                 })
             },
         ) {

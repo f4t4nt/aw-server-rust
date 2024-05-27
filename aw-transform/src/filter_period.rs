@@ -88,6 +88,7 @@ mod tests {
             timestamp: DateTime::from_str("2000-01-01T00:00:01Z").unwrap(),
             duration: Duration::seconds(1),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
         let mut e2 = e1.clone();
         e2.timestamp = DateTime::from_str("2000-01-01T00:00:02Z").unwrap();
@@ -103,6 +104,7 @@ mod tests {
             timestamp: DateTime::from_str("2000-01-01T00:00:02.5Z").unwrap(),
             duration: Duration::seconds(2),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
 
         let filtered_events =
@@ -125,6 +127,7 @@ mod tests {
             timestamp: timestamp_01s,
             duration: Duration::seconds(1),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
         let mut f2 = filter_event.clone();
         f2.timestamp = DateTime::from_str("2000-01-01T00:00:00Z").unwrap();

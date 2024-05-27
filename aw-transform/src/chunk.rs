@@ -65,6 +65,7 @@ mod tests {
             timestamp: DateTime::from_str("2000-01-01T00:00:01Z").unwrap(),
             duration: Duration::seconds(1),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
         let mut e2 = e1.clone();
         e2.data = json_map! {"test2": json!(1)};

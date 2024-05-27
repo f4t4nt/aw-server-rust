@@ -89,6 +89,7 @@ mod tests {
             timestamp: now,
             duration: Duration::hours(2),
             data: serde_json::Map::new(),
+            blob_data: None,
         };
         let (e1, e2_opt) = split_event(&e, now + td1h);
         assert_eq!(e1.timestamp, now);

@@ -31,12 +31,14 @@ mod tests {
             timestamp: DateTime::from_str("2000-01-01T00:00:00Z").unwrap(),
             duration: Duration::seconds(1),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
         let e2 = Event {
             id: None,
             timestamp: DateTime::from_str("2000-01-01T00:00:03Z").unwrap(),
             duration: Duration::seconds(1),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
         let res = sort_by_timestamp(vec![e2.clone(), e1.clone()]);
         assert_eq!(res, vec![e1, e2]);
@@ -49,12 +51,14 @@ mod tests {
             timestamp: DateTime::from_str("2000-01-01T00:00:00Z").unwrap(),
             duration: Duration::seconds(2),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
         let e2 = Event {
             id: None,
             timestamp: DateTime::from_str("2000-01-01T00:00:03Z").unwrap(),
             duration: Duration::seconds(1),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
         let res = sort_by_duration(vec![e2.clone(), e1.clone()]);
         assert_eq!(res, vec![e1, e2]);

@@ -34,6 +34,7 @@ fn create_events(num_events: i64) -> Vec<Event> {
             timestamp: chrono::Utc::now() + Duration::seconds(i),
             duration: Duration::seconds(10),
             data: possible_data[i as usize % 20].clone(),
+            blob_data: None,
         };
         event_list.push(e);
     }

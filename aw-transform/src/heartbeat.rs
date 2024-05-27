@@ -55,6 +55,7 @@ pub fn heartbeat(last_event: &Event, heartbeat: &Event, pulsetime: f64) -> Optio
         timestamp: *starttime,
         duration,
         data: last_event.data.clone(),
+        blob_data: None,
     })
 }
 
@@ -76,12 +77,14 @@ mod tests {
             timestamp: now,
             duration: Duration::seconds(1),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
         let heartbeat1 = Event {
             id: None,
             timestamp: now + Duration::seconds(2),
             duration: Duration::seconds(1),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
 
         // Merge result
@@ -105,6 +108,7 @@ mod tests {
             timestamp: now,
             duration: Duration::seconds(1),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
         let long_pulse_event = Event {
             id: None,
@@ -112,6 +116,7 @@ mod tests {
             duration: Duration::seconds(0),
             timestamp: now + Duration::seconds(120),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
 
         // Merge result
@@ -133,12 +138,14 @@ mod tests {
             timestamp: now,
             duration: Duration::seconds(0),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
         let heartbeat_same_data = Event {
             id: None,
             timestamp: now,
             duration: Duration::seconds(1),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
 
         // Data is same, should merge
@@ -150,6 +157,7 @@ mod tests {
             timestamp: now,
             duration: Duration::seconds(1),
             data: json_map! {"test": json!(2)},
+            blob_data: None,
         };
         // Data is different, should not merge
         let res_merge = heartbeat(&event, &heartbeat_different_data, 1.0);
@@ -164,12 +172,14 @@ mod tests {
             timestamp: now,
             duration: Duration::seconds(0),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
         let heartbeat_same_data = Event {
             id: None,
             timestamp: now,
             duration: Duration::seconds(1),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
 
         // Should merge

@@ -131,6 +131,7 @@ mod datastore_tests {
             timestamp: Utc::now(),
             duration: Duration::seconds(0),
             data: json_map! {"key": json!("value")},
+            blob_data: None,
         };
         let mut e2 = e1.clone();
         e2.timestamp += Duration::nanoseconds(1);
@@ -159,6 +160,7 @@ mod datastore_tests {
             timestamp: Utc::now(),
             duration: Duration::seconds(0),
             data: json_map! {"key": json!("value")},
+            blob_data: None,
         };
         let mut e2 = e1.clone();
         e2.timestamp += Duration::nanoseconds(1);
@@ -226,6 +228,7 @@ mod datastore_tests {
             timestamp: Utc::now(),
             duration: Duration::seconds(100),
             data: json_map! {"key": json!("value")},
+            blob_data: None,
         };
 
         let event_list = [e1];
@@ -258,6 +261,7 @@ mod datastore_tests {
             timestamp: Utc::now(),
             duration: Duration::seconds(0),
             data: json_map! {"key": json!("value")},
+            blob_data: None,
         };
         let mut e2 = e1.clone();
         e2.timestamp += Duration::seconds(1);
@@ -310,6 +314,7 @@ mod datastore_tests {
             timestamp: Utc::now(),
             duration: Duration::seconds(0),
             data: json_map! {"key": json!("value")},
+            blob_data: None,
         };
         let mut e2 = e1.clone();
         e2.timestamp += Duration::nanoseconds(1);
@@ -336,6 +341,7 @@ mod datastore_tests {
             timestamp: Utc::now(),
             duration: Duration::seconds(0),
             data: json_map! {"key": json!("value")},
+            blob_data: None,
         };
         let mut e2 = e1.clone();
         e2.timestamp += Duration::seconds(1);
@@ -385,6 +391,7 @@ mod datastore_tests {
             timestamp: Utc::now(),
             duration: Duration::seconds(0),
             data: json_map! {"key": json!("value")},
+            blob_data: None,
         };
         let mut e1 = e.clone();
         e1.data = json_map! {"key": json!("value1")};
@@ -453,6 +460,7 @@ mod datastore_tests {
             timestamp: Utc::now(),
             duration: Duration::seconds(0),
             data: json_map! {"key": json!("value")},
+            blob_data: None,
         };
         {
             // Initialize database and create buckets

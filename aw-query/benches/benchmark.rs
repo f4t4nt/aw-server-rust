@@ -64,6 +64,7 @@ mod query_benchmarks {
                 timestamp: chrono::Utc::now() + Duration::seconds(i),
                 duration: Duration::seconds(10),
                 data: possible_data[i as usize % 20].clone(),
+                blob_data: None,
             };
             event_list.push(e);
         }

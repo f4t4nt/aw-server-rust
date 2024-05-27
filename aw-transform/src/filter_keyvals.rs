@@ -95,6 +95,7 @@ mod tests {
             timestamp: DateTime::from_str("2000-01-01T00:00:00Z").unwrap(),
             duration: Duration::seconds(1),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
         let mut e2 = e1.clone();
         e2.data = json_map! {"test": json!(1), "test2": json!(1)};
@@ -111,6 +112,7 @@ mod tests {
             timestamp: DateTime::from_str("2000-01-01T00:00:00Z").unwrap(),
             duration: Duration::seconds(1),
             data: json_map! {"key1": json!("value1")},
+            blob_data: None,
         };
         let mut e2 = e1.clone();
         e2.data = json_map! {"key1": json!("value2")};
@@ -141,6 +143,7 @@ mod tests {
             timestamp: DateTime::from_str("2000-01-01T00:00:00Z").unwrap(),
             duration: Duration::seconds(1),
             data: json_map! {"key1": json!(100)},
+            blob_data: None,
         };
         let events = vec![e1.clone()];
         let regex_value = RegexBuilder::new("value").build().unwrap();
@@ -155,6 +158,7 @@ mod tests {
             timestamp: DateTime::from_str("2000-01-01T00:00:00Z").unwrap(),
             duration: Duration::seconds(1),
             data: json_map! {"test": json!(1)},
+            blob_data: None,
         };
         let mut e2 = e1.clone();
         e2.data = json_map! {"test": json!(1), "test2": json!(2)};

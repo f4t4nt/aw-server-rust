@@ -141,6 +141,7 @@ mod import {
                         timestamp,
                         duration: Duration::nanoseconds(duration_ns),
                         data,
+                        blob_data: None,
                     };
                     list.push(event)
                 }

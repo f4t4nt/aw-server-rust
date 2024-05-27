@@ -28,6 +28,8 @@ pub struct Event {
     /// Can contain any arbitrary JSON data that represents the value of the event.
     /// All events in a bucket should follow the format of it's respective bucket-type.
     pub data: Map<String, Value>,
+
+    pub blob_data: Option<Vec<u8>>,
 }
 
 impl Event {
@@ -37,6 +39,7 @@ impl Event {
             timestamp,
             duration,
             data,
+            blob_data: None,
         }
     }
     pub fn calculate_endtime(&self) -> DateTime<Utc> {
@@ -62,6 +65,7 @@ impl Default for Event {
             timestamp: Utc::now(),
             duration: Duration::seconds(0),
             data: serde_json::Map::new(),
+            blob_data: None,
         }
     }
 }
@@ -79,6 +83,7 @@ fn test_event() {
         timestamp: Utc::now(),
         duration: Duration::seconds(1),
         data: json_map! {"test": json!(1)},
+        blob_data: None,
     };
     debug!("event: {:?}", e);
 }

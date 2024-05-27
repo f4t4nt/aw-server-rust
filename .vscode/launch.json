@@ -4,11 +4,21 @@
         {
             "type": "cppvsdbg",
             "request": "launch",
-            "name": "Debug Rust with MSVC",
+            "name": "Debug Server with MSVC",
             "program": "${workspaceFolder}/target/debug/aw-server.exe",
             "args": [],
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "rust: cargo build"
+        },
+        {
+            "type": "cppvsdbg",
+            "request": "launch",
+            "name": "Debug ScreenshotWatcher with MSVC",
+            "program": "${workspaceFolder}/target/debug/aw-screenshot.exe",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            // "preLaunchTask": "rust: cargo build"
+            "preLaunchTask": "rust: cargo build aw-screenshot"
         }
     ]
 }

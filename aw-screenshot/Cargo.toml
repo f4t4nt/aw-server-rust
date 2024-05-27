@@ -1,0 +1,15 @@
+[package]
+name = "aw-screenshot"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+screenshots = "0.8.10"
+image = "0.24"
+clap = { version = "4.1", features = ["derive", "cargo"] }
+tokio = { version = "1", features = ["full"] }
+futures = "0.3"
+chrono = "0.4"
+aw-models = { path = "../aw-models" }
+reqwest = { version = "0.12", features = ["json"] }
+serde_json = "1.0"
